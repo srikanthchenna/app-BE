@@ -29,5 +29,17 @@ public class SecuityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+		http.authorizeRequests()
+		  .antMatchers("/userDetails").access("hasRole('ROLE_ADMIN')")  
+		  .anyRequest().permitAll()
+		  .and()
+		    .formLogin().loginPage("/login")
+		    .usernameParameter("username").passwordParameter("password")
+		  .and()
+		    .logout().logoutSuccessUrl("/login?logout") 
+		   .and()
+		   .exceptionHandling().accessDeniedPage("/403")
+		  .and()
+		    .csrf();
 	}
 }
