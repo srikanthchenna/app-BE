@@ -1,0 +1,19 @@
+sales register
+Date,vehicle number,weight bridge token number,empty weight, load weight,tare weight,party name,number of bags,type of rice,
+	quintals,rate per quintal,adj,full settlement,proker name
+
+	adj -> wight loss, damage, polish
+			full settlement received
+	
+    types -> husk bran ash broken rice
+
+purchase register
+Serial number,weight slip number,empty weight, load weight,vehicle,aasami name,type of paddy,bags,quintal,price per quintal,adjments,proker name
+
+	adjustments -> 6 fields 
+	final settlement
+	paid & pending
+	
+	
+	
+stock register
