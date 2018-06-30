@@ -15,7 +15,7 @@ CREATE TABLE user_roles (
   
 --Purchase register
   
-create table Vehicle_details(
+create table vehicle_details(
 id serial PRIMARY KEY,
 vehicle_no character varying(20) not null,
 weight_slip character varying(20) not null,
@@ -46,7 +46,7 @@ retired boolean
 create table purchase_register(
 id serial PRIMARY KEY,
 sno character varying(20) not null,
-vehicle_id integer  REFERENCES Vehicle_details (id),
+vehicle_id integer UNIQUE  REFERENCES Vehicle_details (id),
 aasami_name character varying(30) not null,
 broker_name character varying(30) ,
 product_name character varying(20) not null REFERENCES product_type(type) ,
