@@ -9,13 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "vehicle_details")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" }, ignoreUnknown = true)
 public class VehicleDetails {
-	
+
 	@Id
 	@GeneratedValue
 	private BigDecimal id;
@@ -30,8 +33,10 @@ public class VehicleDetails {
 	@Column(name = "tare_weight")
 	private BigDecimal tareWeight;
 	@Column(name = "created_date")
+	@CreationTimestamp
 	private Date createdDate;
 	@Column(name = "updated_date")
+	@UpdateTimestamp
 	private Date updatedDate;
 	@Column(name = "retired")
 	private boolean retired;
@@ -106,6 +111,13 @@ public class VehicleDetails {
 
 	public void setRetired(boolean retired) {
 		this.retired = retired;
+	}
+
+	@Override
+	public String toString() {
+		return "VehicleDetails [id=" + id + ", vehicleNo=" + vehicleNo + ", weightSlip=" + weightSlip + ", emptyWeight="
+				+ emptyWeight + ", loadWeight=" + loadWeight + ", tareWeight=" + tareWeight + ", createdDate="
+				+ createdDate + ", updatedDate=" + updatedDate + ", retired=" + retired + "]";
 	}
 
 }

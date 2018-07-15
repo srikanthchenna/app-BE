@@ -12,8 +12,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "purchase_adjustments")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"},ignoreUnknown = true)
 public class PurchaseAdjustments {
+
+	@Override
+	public String toString() {
+		return "PurchaseAdjustments [id=" + id + ", bagsCost=" + bagsCost + ", weightBridgeCost=" + weightBridgeCost
+				+ ", kulli=" + kulli + ", miscCost=" + miscCost + ", labourCost=" + labourCost + "]";
+	}
 
 	@Id
 	@GeneratedValue

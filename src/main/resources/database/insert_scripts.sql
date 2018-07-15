@@ -1,5 +1,5 @@
 INSERT INTO users(username,password,enabled)
-VALUES ('srikanth','srikanth', 1);
+VALUES ('srikanth','$2a$10$NoENBycTJ.pQaYbIkHofnuJSR3bDhRtX0HvbWgnIzSIBr0paGVSCO', 1);
 INSERT INTO users(username,password,enabled)
 VALUES ('sandeep','sandeep', 1);
 INSERT INTO users(username,password,enabled)

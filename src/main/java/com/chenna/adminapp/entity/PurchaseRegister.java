@@ -3,6 +3,7 @@ package com.chenna.adminapp.entity;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +13,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
 @Table(name = "purchase_register")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" }, ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class PurchaseRegister {
 	@Id
 	@GeneratedValue
@@ -24,7 +31,7 @@ public class PurchaseRegister {
 	@Column(name = "sno")
 	private String sno;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "vehicle_id")
 	private VehicleDetails vehicleDetails;
 
@@ -46,17 +53,19 @@ public class PurchaseRegister {
 	@Column(name = "price_per_quintals")
 	private BigDecimal pricePerQuintals;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "purcahse_adj_id")
 	private PurchaseAdjustments purchaseAdjustments;
 
 	@Column(name = "final_settlement")
-	private BigDecimal final_settlement;
+	private BigDecimal finalSettlement;
 	@Column(name = "status")
 	private String status;
 	@Column(name = "created_date")
+	@CreationTimestamp
 	private Date createdDate;
 	@Column(name = "updated_date")
+	@UpdateTimestamp
 	private Date updatedDate;
 	@Column(name = "retired")
 	private boolean retired;
@@ -149,12 +158,12 @@ public class PurchaseRegister {
 		this.purchaseAdjustments = purchaseAdjustments;
 	}
 
-	public BigDecimal getFinal_settlement() {
-		return final_settlement;
+	public BigDecimal getFinalSettlement() {
+		return finalSettlement;
 	}
 
-	public void setFinal_settlement(BigDecimal final_settlement) {
-		this.final_settlement = final_settlement;
+	public void setFinalSettlement(BigDecimal finalSettlement) {
+		this.finalSettlement = finalSettlement;
 	}
 
 	public String getStatus() {
@@ -187,6 +196,16 @@ public class PurchaseRegister {
 
 	public void setRetired(boolean retired) {
 		this.retired = retired;
+	}
+
+	@Override
+	public String toString() {
+		return "PurchaseRegister [id=" + id + ", sno=" + sno + ", vehicleDetails=" + vehicleDetails + ", aasamiName="
+				+ aasamiName + ", brokerName=" + brokerName + ", productType=" + productType + ", bagsCount="
+				+ bagsCount + ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", pricePerQuintals="
+				+ pricePerQuintals + ", purchaseAdjustments=" + purchaseAdjustments + ", finalSettlement="
+				+ finalSettlement + ", status=" + status + ", createdDate=" + createdDate + ", updatedDate="
+				+ updatedDate + ", retired=" + retired + "]";
 	}
 
 }

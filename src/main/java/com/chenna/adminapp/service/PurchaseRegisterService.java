@@ -12,8 +12,11 @@ public class PurchaseRegisterService {
 	@Autowired
 	private PurchaseRegisterDao purchaseRegisterDao;
 	
+	public PurchaseRegister createPurchase(PurchaseRegister purchaseRegister) {
+		return purchaseRegisterDao.save(purchaseRegister);
+	}
+	
 	public Iterable<PurchaseRegister> findAll(){
 		return purchaseRegisterDao.findAll();
 	}
-
 }

@@ -4,13 +4,15 @@ CREATE  TABLE users (
   username character varying  NOT NULL ,
   password character varying  NOT NULL ,
   enabled integer NOT NULL DEFAULT 1 ,
-  PRIMARY KEY (username));
+  PRIMARY KEY (username)
+);
 CREATE TABLE user_roles (
   user_role_id integer NOT NULL,
   username character varying NOT NULL REFERENCES users (username),
   role character varying  NOT NULL,
   PRIMARY KEY (user_role_id),
-  UNIQUE (role,username) );
+  UNIQUE (role,username) 
+);
 
   
 --Purchase register
@@ -22,8 +24,8 @@ weight_slip character varying(20) not null,
 empty_weight numeric(10,3) not null,
 load_weight numeric(10,3),
 tare_weight numeric(10,3),
-created_date TIMESTAMP  not null,
-updated_date TIMESTAMP ,
+created_date TIMESTAMP,
+updated_date TIMESTAMP,
 retired boolean
 );
 
@@ -57,7 +59,7 @@ price_per_quintals numeric(7,3),
 purcahse_adj_id integer REFERENCES purchase_adjustments (id),
 final_settlement numeric(10,3),
 status character varying(10) not null, 
-created_date TIMESTAMP  not null,
-updated_date TIMESTAMP ,
+created_date TIMESTAMP,
+updated_date TIMESTAMP,
 retired boolean
 );
