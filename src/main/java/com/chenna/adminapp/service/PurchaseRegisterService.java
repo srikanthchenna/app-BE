@@ -1,6 +1,7 @@
 package com.chenna.adminapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.chenna.adminapp.dao.PurchaseRegisterDao;
@@ -17,6 +18,10 @@ public class PurchaseRegisterService {
 	}
 	
 	public Iterable<PurchaseRegister> findAll(){
+		return purchaseRegisterDao.findAll();
+	}
+
+	public Iterable<PurchaseRegister> findAll(Pageable pageable) {
 		return purchaseRegisterDao.findAll();
 	}
 }

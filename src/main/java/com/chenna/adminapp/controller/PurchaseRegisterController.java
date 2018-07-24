@@ -1,10 +1,13 @@
 package com.chenna.adminapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,16 +30,18 @@ public class PurchaseRegisterController {
 		purchaseRegisterService.createPurchase(purchaseRegister);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 	}
-	
+
 	@RequestMapping(value = "/createPurchas", method = RequestMethod.GET)
 	public String createPurchase() {
-		//System.out.println(purchaseRegister.toString());
-		//return purchaseRegisterService.createPurchase(purchaseRegister);
+		// System.out.println(purchaseRegister.toString());
+		// return purchaseRegisterService.createPurchase(purchaseRegister);
 		return "string";
 	}
 
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
 	public Iterable<PurchaseRegister> findAllPurchases() {
-		return purchaseRegisterService.findAll();
+
+		Pageable pageable = PageRequest.of(0, 5, Direction.ASC, "id");
+		return purchaseRegisterService.findAll(pageable);
 	}
 }

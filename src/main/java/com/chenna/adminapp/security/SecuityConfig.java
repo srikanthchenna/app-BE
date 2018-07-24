@@ -40,7 +40,7 @@ public class SecuityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.csrf().disable()
-        .authorizeRequests()
+        .authorizeRequests().antMatchers("/purchaseRegister/*").permitAll() //TODO change authorization
         .anyRequest()
         .authenticated()
         .and()
